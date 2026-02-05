@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY LOVE FOR OGURI CAP 🩶</title>
+    <title>OGURI CAP: THE GREY MONSTER 🩶</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syne:wght@400;800&display=swap" rel="stylesheet">
@@ -12,15 +12,11 @@
             --bg: #0a0a0a;
             --text: #ffffff;
             --gray: #b0b0b0;
-            --accent: #7d8cc4; /* Oguri grey-blue vibe */
+            --accent: #7d8cc4; 
             --border: 2px solid #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg);
@@ -30,17 +26,42 @@
             cursor: crosshair;
         }
 
-        h1, h2, h3 {
-            font-family: 'Syne', sans-serif;
-            text-transform: uppercase;
-            line-height: 0.9;
+        h1, h2, h3 { font-family: 'Syne', sans-serif; text-transform: uppercase; line-height: 0.9; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: var(--border);
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
         }
+
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+            padding: 5px 10px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { border: 1px solid var(--accent); color: var(--accent); }
 
         /* --- MARQUEE --- */
         .marquee-container {
             background: var(--text);
             color: var(--bg);
             padding: 10px 0;
+            margin-top: 60px; /* Offset for nav */
             overflow: hidden;
             white-space: nowrap;
             position: relative;
@@ -71,219 +92,234 @@
             border-bottom: var(--border);
         }
 
-        .hero h1 {
-            font-size: 12vw;
-            z-index: 2;
-            mix-blend-mode: exclusion;
-        }
-
-        .hero-sub {
-            font-size: 1.5rem;
-            color: var(--gray);
-            margin-top: 20px;
-            letter-spacing: -1px;
-        }
+        .hero h1 { font-size: 10vw; z-index: 2; mix-blend-mode: exclusion; }
 
         .hero-img {
-         position: absolute;
-         top: 0;
-         left: 0;
-         width: 100%;        
-         height: 100%;       
-         object-fit: cover;  
-         opacity: 0.3;       
-         filter: grayscale(100%) contrast(120%);
-         -index: 1;
-         transition: 0.5s;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;        
+            height: 100%;       
+            object-fit: cover;  
+            opacity: 0.2;       
+            filter: grayscale(100%) contrast(120%);
+            z-index: 1; /* Fixed typo */
+            transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .hero:hover .hero-img {
-            opacity: 0.6;
-            width: 45%;
-        }
+        .hero:hover .hero-img { opacity: 0.5; scale: 1.05; }
 
-        /* --- THE GLAZE (Reasons) --- */
-        .glaze-session {
+        /* --- STATS GRID --- */
+        .stats-section {
             padding: 100px 5%;
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 50px;
-        }
-
-        .section-title {
-            font-size: 4rem;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             border-bottom: var(--border);
-            display: inline-block;
         }
 
-        .card {
+        .stat-box {
             border: 1px solid #333;
-            padding: 40px;
-            background: #111;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat-box h4 { color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; }
+        .stat-box p { font-size: 2rem; font-weight: 800; font-family: 'Syne'; }
+
+        /* --- THE GLAZE (Original Section) --- */
+        .glaze-session { padding: 100px 5%; }
+        .section-title { font-size: 4rem; margin-bottom: 50px; border-bottom: var(--border); display: inline-block; }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card { border: 1px solid #333; padding: 40px; background: #111; transition: 0.3s; }
+        .card:hover { background: var(--accent); color: var(--bg); transform: translateY(-10px); box-shadow: 10px 10px 0px var(--text); }
+        .card h3 { font-size: 2.5rem; margin-bottom: 20px; }
+
+        /* --- RIVALS SECTION --- */
+        .rivals { padding: 100px 5%; background: #050505; }
+        .rival-grid { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; }
+        .rival-card {
+            min-width: 300px;
+            border: var(--border);
+            padding: 20px;
+            filter: grayscale(1);
             transition: 0.3s;
         }
+        .rival-card:hover { filter: grayscale(0); background: #111; }
+        .rival-card h3 { color: var(--accent); margin-top: 15px; }
 
-        .card:hover {
-            background: var(--accent);
-            color: var(--bg);
-            transform: translateY(-10px);
-            box-shadow: 10px 10px 0px var(--text);
+        /* --- TIMELINE --- */
+        .timeline { padding: 100px 5%; }
+        .timeline-item {
+            display: flex;
+            gap: 50px;
+            margin-bottom: 60px;
+            border-left: 2px solid var(--accent);
+            padding-left: 30px;
+            position: relative;
         }
-
-        .card h3 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .card p {
-            font-size: 1.2rem;
-            line-height: 1.4;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            background: var(--text);
         }
 
         /* --- THE SHRINE (Gallery) --- */
-        .shrine {
-            padding: 50px 0;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 500px;
-            overflow: hidden;
-            border: 1px solid #222;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .gallery-item:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.1);
-        }
-
-        .caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            background: var(--text);
-            color: var(--bg);
-            padding: 10px;
-            font-weight: bold;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: 0.3s;
-        }
-
-        .gallery-item:hover .caption {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .shrine { padding: 50px 0; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0; }
+        .gallery-item { position: relative; height: 500px; overflow: hidden; border: 1px solid #222; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.4s; }
+        .gallery-item:hover img { filter: grayscale(0%); transform: scale(1.1); }
+        .caption { position: absolute; bottom: 0; left: 0; background: var(--text); color: var(--bg); padding: 10px; font-weight: bold; opacity: 0; transform: translateY(100%); transition: 0.3s; }
+        .gallery-item:hover .caption { opacity: 1; transform: translateY(0); }
 
         /* --- FOOTER --- */
-        footer {
-            padding: 50px;
-            text-align: center;
-            border-top: var(--border);
-            font-size: 2rem;
-            font-family: 'Syne', sans-serif;
-        }
+        footer { padding: 100px 50px; text-align: center; border-top: var(--border); }
+        .blink { animation: blinker 1s linear infinite; color: var(--accent); }
+        @keyframes blinker { 50% { opacity: 0; } }
 
-        .blink {
-            animation: blinker 1s linear infinite;
-        }
-
-        @keyframes blinker {
-            50% { opacity: 0; }
-        }
-
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 18vw; }
+            .hero h1 { font-size: 15vw; }
             .section-title { font-size: 2.5rem; }
-            .card h3 { font-size: 2rem; }
+            nav { justify-content: center; }
+            .nav-links { display: none; } /* Hide nav on mobile for simplicity */
         }
     </style>
 </head>
 <body>
 
+    <nav>
+        <div style="font-family: 'Syne'; font-weight: 800;">OGURI_CAP.SYS</div>
+        <div class="nav-links">
+            <a href="#stats">Stats</a>
+            <a href="#lore">Lore</a>
+            <a href="#rivals">Rivals</a>
+            <a href="#timeline">Journey</a>
+            <a href="#shrine">Shrine</a>
+        </div>
+    </nav>
+
     <div class="marquee-container">
         <div class="marquee-content">
-            OGURI CAP SUPREMACY 🩶 CINDERELLA GRAY IS THE BIBLE 🩶 SHE ATE (LITERALLY) 🩶 THE MONSTER OF KASAMATSU 🩶 NO THOUGHTS JUST OGURI 🩶 OGURI CAP SUPREMACY 🩶 CINDERELLA GRAY IS THE BIBLE 🩶
+            OGURI CAP SUPREMACY 🩶 CINDERELLA GRAY IS THE BIBLE 🩶 SHE ATE (LITERALLY) 🩶 THE MONSTER OF KASAMATSU 🩶 NO THOUGHTS JUST OGURI 🩶 OGURI CAP SUPREMACY 🩶
         </div>
     </div>
 
     <section class="hero">
         <img src="oguri.jpg" alt="Oguri Cap" class="hero-img">
-        <h1>MY LOVE FOR<br>OGURI CAP</h1>
-        <p class="hero-sub">warning: extreme glazing ahead ⚠️</p>
+        <h1>THE GREY<br>MONSTER</h1>
+        <p class="hero-sub" style="font-size: 1.2rem; letter-spacing: 5px;">THE EIGHTH WONDER OF THE WORLD</p>
     </section>
 
-    <section class="glaze-session">
+    <!-- NEW SECTION: STATS -->
+    <section id="stats" class="stats-section">
+        <div class="stat-box">
+            <h4>WINS/STARTS</h4>
+            <p>22 / 32</p>
+        </div>
+        <div class="stat-box" style="background: var(--text); color: var(--bg);">
+            <h4>G1 VICTORIES</h4>
+            <p>4 TOTAL</p>
+        </div>
+        <div class="stat-box">
+            <h4>EARNINGS</h4>
+            <p>¥951M+</p>
+        </div>
+        <div class="stat-box">
+            <h4>STATUS</h4>
+            <p>LEGEND</p>
+        </div>
+    </section>
+
+    <!-- ORIGINAL GLAZE SECTION -->
+    <section id="lore" class="glaze-session">
         <h2 class="section-title">WHY SHE IS THE GOAT</h2>
-
-        <div class="card">
-            <h3>01. THE AURA</h3>
-            <p>have you seen her eyes in cinderella gray?? actually terrifying. she walks onto the track and the atmosphere just changes. literally shivers. main character energy but make it ominous. she doesn't just run, she hunts. 🥶</p>
-        </div>
-
-        <div class="card">
-            <h3>02. SHE EATS</h3>
-            <p>figuratively: she devours the competition. <br>
-            literally: girl cannot stop eating. watching her inhale food is my therapy. she keeps the local economy running just by buying snacks. relatable queen fr. 🍙🍜</p>
-        </div>
-
-        <div class="card">
-            <h3>03. STARTED FROM THE BOTTOM</h3>
-            <p>kasamatsu dirt tracks to the big leagues. the grit? unmatched. everyone doubted her because she was from the countryside and she silenced them all. we love an underdog story with a stoic face. 😭🔥</p>
-        </div>
-
-        <div class="card">
-            <h3>04. THE ART STYLE</h3>
-            <p>when the mangaka draws her engaging her zone... art peaked there. no notes. simply perfection. the scratchy lines, the intensity... it feeds my soul.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>01. THE AURA</h3>
+                <p>Have you seen her eyes in Cinderella Gray? Actually terrifying. Main character energy but make it ominous. She doesn't just run, she hunts. 🥶</p>
+            </div>
+            <div class="card">
+                <h3>02. SHE EATS</h3>
+                <p>Literally: girl cannot stop eating. Watching her inhale food is my therapy. She keeps the local economy running just by buying snacks. 🍙</p>
+            </div>
+            <div class="card">
+                <h3>03. COUNTRY GAL</h3>
+                <p>Started from Kasamatsu dirt tracks. Everyone doubted the "country horse" until she destroyed the JRA elite. A true underdog. 😭🔥</p>
+            </div>
         </div>
     </section>
 
-    <section class="shrine">
-        <div class="marquee-container" style="background: transparent; color: var(--text); border-top: var(--border); border-bottom: var(--border);">
+    <!-- NEW SECTION: RIVALS -->
+    <section id="rivals" class="rivals">
+        <h2 class="section-title">THE WORTHY RIVALS</h2>
+        <div class="rival-grid">
+            <div class="rival-card">
+                <h3>TAMAMO CROSS</h3>
+                <p>The "White Lightning." Their rivalry defined an era. The only horse that could truly look Oguri in the eye and not blink.</p>
+            </div>
+            <div class="rival-card">
+                <h3>SUPER CREEK</h3>
+                <p>Tactical genius. The "Eternal Rival" who pushed Oguri to her absolute limits in the big races.</p>
+            </div>
+            <div class="rival-card">
+                <h3>INARI ONE</h3>
+                <p>The wild spirit from Ohi. When these three met, it was called the era of the "Three Powerhouses."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: TIMELINE -->
+    <section id="timeline" class="timeline">
+        <h2 class="section-title">THE JOURNEY</h2>
+        <div class="timeline-item">
+            <div>
+                <h3>1987: KASAMATSU DEBUT</h3>
+                <p>The legend begins. 8 consecutive wins on the local circuit. The world wasn't ready.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div>
+                <h3>1988: THE JRA INVASION</h3>
+                <p>Moves to the central league. Wins the Arima Kinen as a 3-year-old. Japan falls in love.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div>
+                <h3>1990: THE LAST STAND</h3>
+                <p>After a slump, everyone thought she was washed. Then... the 1990 Arima Kinen. 170,000 people chanting her name. Pure cinema.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="shrine" class="shrine">
+        <div class="marquee-container" style="background: transparent; color: var(--text); border-top: var(--border); border-bottom: var(--border); margin-top: 0;">
             <div class="marquee-content" style="animation-direction: reverse;">
                 LOOK AT HER 🩶 THE GRAY PHANTOM 🩶 ABSOLUTE CINEMA 🩶 IDOL 🩶 LOOK AT HER 🩶 THE GRAY PHANTOM 🩶 ABSOLUTE CINEMA 🩶
             </div>
         </div>
         
         <div class="gallery">
-            <div class="gallery-item">
-                <img src="oguri2.jpg" alt="Oguri">
-                <div class="caption">the lock in is crazy</div>
-            </div>
-            <div class="gallery-item">
-                <img src="oguri3.jpg" alt="Oguri">
-                <div class="caption">she is speed</div>
-            </div>
-            <div class="gallery-item">
-                <img src="oguri4.jpg" alt="Oguri">
-                <div class="caption">nom nom nom</div>
-            </div>
-            <div class="gallery-item">
-                <img src="oguri5.jpg" alt="Oguri">
-                <div class="caption">common W</div>
-            </div>
+            <div class="gallery-item"><img src="oguri2.jpg" alt="Oguri"><div class="caption">the lock in is crazy</div></div>
+            <div class="gallery-item"><img src="oguri3.jpg" alt="Oguri"><div class="caption">she is speed</div></div>
+            <div class="gallery-item"><img src="oguri4.jpg" alt="Oguri"><div class="caption">nom nom nom</div></div>
+            <div class="gallery-item"><img src="oguri5.jpg" alt="Oguri"><div class="caption">common W</div></div>
         </div>
     </section>
 
     <footer>
         <p>I BELIEVE IN <span class="blink">OGURI CAP</span> SUPREMACY</p>
-        <p style="font-size: 1rem; margin-top: 20px; color: var(--gray);">made with 🩶 and lack of sleep</p>
+        <p style="font-size: 1rem; margin-top: 20px; color: var(--gray);">HISTORY'S GREATEST GREY // MADE BY ARKINTONS</p>
     </footer>
 
 </body>
